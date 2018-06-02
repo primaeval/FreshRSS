@@ -37,10 +37,12 @@ return array(
 			'no_limit' => 'Sem lmite',
 			'thin' => 'Fino',
 		),
+		'show_nav_buttons' => 'Show the navigation buttons',	//TODO
 	),
 	'query' => array(
 		'_' => 'Queries do usuário',
 		'deprecated' => 'Esta não é mais válida. A categoria ou feed relacionado foi deletado.',
+		'display' => 'Display user query results', // TODO
 		'filter' => 'Filtro aplicado:',
 		'get_all' => 'Mostrar todos os artigos',
 		'get_category' => 'Visualizar "%s" categoria',
@@ -51,6 +53,7 @@ return array(
 		'number' => 'Query n°%d',
 		'order_asc' => 'Exibir artigos mais antigos primeiro',
 		'order_desc' => 'Exibir artigos mais novos primeiro',
+		'remove' => 'Remove user query', // TODO
 		'search' => 'Busca por "%s"',
 		'state_0' => 'Exibir todos os artigos',
 		'state_1' => 'Exibir artigos lidos',
@@ -125,6 +128,7 @@ return array(
 	),
 	'sharing' => array(
 		'_' => 'Compartilhando',
+		'add' => 'Add a sharing method', // TODO
 		'blogotext' => 'Blogotext',
 		'diaspora' => 'Diaspora*',
 		'email' => 'Email',
@@ -132,6 +136,7 @@ return array(
 		'g+' => 'Google+',
 		'more_information' => 'Mais informação',
 		'print' => 'Imprimir',
+		'remove' => 'Remove sharing method', // TODO
 		'shaarli' => 'Shaarli',
 		'share_name' => 'Nome de visualização para compartilhar',
 		'share_url' => 'URL utilizada para compartilhar',
@@ -148,6 +153,7 @@ return array(
 		'collapse_article' => 'Fechar',
 		'first_article' => 'Ir para o primeiro artigo',
 		'focus_search' => 'Acessar a caixa de busca',
+		'global_view' => 'Switch to global view', // TODO
 		'help' => 'Mostrar documentação',
 		'javascript' => 'JavaScript deve ser habilitado para utilizar atalhos',
 		'last_article' => 'Ir para o último artigo',
@@ -157,13 +163,17 @@ return array(
 		'navigation' => 'Navegação',
 		'navigation_help' => 'Com o modificador "Shift", atalhos de navegação aplicam aos feeds.<br/>Com o "Alt" modificador, atalhos de navegação aplicam as categorias.',
 		'next_article' => 'Pule para o próximo artigo',
+		'normal_view' => 'Switch to normal view', // TODO
 		'other_action' => 'Outras ações',
 		'previous_article' => 'Pule para o artigo anterior',
+		'reading_view' => 'Switch to reading view', // TODO
+		'rss_view' => 'Open RSS view in a new tab', // TODO
 		'see_on_website' => 'Visualize o site original',
 		'shift_for_all_read' => '+ <code>shift</code> para marcar todos os artigos como lido',
 		'title' => 'Atalhos',
 		'user_filter' => 'Acesse filtros de usuário',
 		'user_filter_help' => 'Se há apenas um filtro, ele é utilizado. Caso contrário, os filtros serão acessíveis pelos seus números.',
+		'views' => 'Views', // TODO
 	),
 	'user' => array(
 		'articles_and_size' => '%s artigos (%s)',

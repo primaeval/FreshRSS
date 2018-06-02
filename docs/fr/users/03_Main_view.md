@@ -45,7 +45,7 @@ C’est le cas le plus simple, puisque votre instance est publique, vous n’ave
 0 * * * * curl 'https://votre.serveur.net/FreshRSS/p/i/?c=feed&a=actualize'
 ```
 
-##### Authentification par formulaire ou Persona
+##### Authentification par formulaire
 
 Dans ces cas-là, si vous avez autorisé la lecture anonyme des articles, vous pouvez aussi permettre à n’importe qui de rafraîchir vos flux (« Autoriser le rafraîchissement anonyme des flux »).
 
@@ -180,4 +180,7 @@ Attention à ne pas introduire d’espace entre l’opérateur et la valeur rech
 Certains opérateurs peuvent être utilisé négativement, pour exclure des articles, avec la même syntaxe que ci-dessus, mais préfixé par `!` ou `-` :
 `-author:nom`, `-intitle:mot`, `-inurl:mot`, `-#tag`, `!mot`.
 
-Il est également possible de combiner les mots-clefs pour faire un filtrage encore plus précis, and et il est autorisé d’avoir plusieurs instances de : `author:`, `intitle:`, `inurl:`, `#`, et texte libre.
+Il est également possible de combiner les mots-clefs pour faire un filtrage encore plus précis, et il est autorisé d’avoir plusieurs instances de : `author:`, `intitle:`, `inurl:`, `#`, et texte libre.
+
+Combiner plusieurs critères implique un *et* logique, mais le mot clef ` OR ` peut être utiliser pour combiner plusieurs critères avec un *ou* logique :
+`author:Dupont OR author:Dupond`

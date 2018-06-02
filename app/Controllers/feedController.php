@@ -24,20 +24,36 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 				Minz_Error::error(403);
 			}
 		}
+		$this->updateTTL();
 	}
 
+	/**
+	 * @param $url
+	 * @param string $title
+	 * @param int $cat_id
+	 * @param string $new_cat_name
+	 * @param string $http_auth
+	 * @return FreshRSS_Feed|the
+	 * @throws FreshRSS_AlreadySubscribed_Exception
+	 * @throws FreshRSS_FeedNotAdded_Exception
+	 * @throws FreshRSS_Feed_Exception
+	 * @throws Minz_FileNotExistException
+	 */
 	public static function addFeed($url, $title = '', $cat_id = 0, $new_cat_name = '', $http_auth = '') {
 		FreshRSS_UserDAO::touch();
 		@set_time_limit(300);
 
 		$catDAO = new FreshRSS_CategoryDAO();
 
+		$url = trim($url);
+
 		$cat = null;
+		if ($new_cat_name != '') {
+			$new_cat_id = $catDAO->addCategory(array('name' => $new_cat_name));
+			$cat_id = $new_cat_id > 0 ? $new_cat_id : $cat_id;
+		}
 		if ($cat_id > 0) {
 			$cat = $catDAO->searchById($cat_id);
-		}
-		if ($cat == null && $new_cat_name != '') {
-			$cat = $catDAO->addCategory(array('name' => $new_cat_name));
 		}
 		if ($cat == null) {
 			$catDAO->checkDefault();
@@ -54,7 +70,7 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 			throw new FreshRSS_AlreadySubscribed_Exception($url, $feed->name());
 		}
 
-		// Call the extension hook
+		/** @var FreshRSS_Feed $feed */
 		$feed = Minz_ExtensionManager::callHook('feed_before_insert', $feed);
 		if ($feed === null) {
 			throw new FreshRSS_FeedNotAdded_Exception($url, $feed->name());
@@ -68,6 +84,7 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 			'description' => $feed->description(),
 			'lastUpdate' => time(),
 			'httpAuth' => $feed->httpAuth(),
+			'attributes' => array(),
 		);
 
 		$id = $feedDAO->addFeed($values);
@@ -136,7 +153,7 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 				// User want to create a new category, new_category parameter
 				// must exist
 				$new_cat = Minz_Request::param('new_category');
-				$new_cat_name = isset($new_cat['name']) ? $new_cat['name'] : '';
+				$new_cat_name = isset($new_cat['name']) ? trim($new_cat['name']) : '';
 			}
 
 			// HTTP information are useful if feed is protected behind a
@@ -255,7 +272,6 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 
 		$updated_feeds = 0;
 		$nb_new_articles = 0;
-		$is_read = FreshRSS_Context::$user_conf->mark_when['reception'] ? 1 : 0;
 		foreach ($feeds as $feed) {
 			$url = $feed->url();	//For detection of HTTP 301
 
@@ -263,17 +279,17 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 			if ((!$simplePiePush) && (!$feed_id) && $pubSubHubbubEnabled && ($feed->lastUpdate() > $pshbMinAge)) {
 				//$text = 'Skip pull of feed using PubSubHubbub: ' . $url;
 				//Minz_Log::debug($text);
-				//file_put_contents(USERS_PATH . '/_/log_pshb.txt', date('c') . "\t" . $text . "\n", FILE_APPEND);
+				//Minz_Log::debug($text, PSHB_LOG);
 				continue;	//When PubSubHubbub is used, do not pull refresh so often
 			}
 
 			$mtime = 0;
-			$ttl = $feed->ttl();
-			if ($ttl == -1) {
+			if ($feed->mute()) {
 				continue;	//Feed refresh is disabled
 			}
+			$ttl = $feed->ttl();
 			if ((!$simplePiePush) && (!$feed_id) &&
-				($feed->lastUpdate() + 10 >= time() - ($ttl == -2 ? FreshRSS_Context::$user_conf->ttl_default : $ttl))) {
+				($feed->lastUpdate() + 10 >= time() - ($ttl == FreshRSS_Feed::TTL_DEFAULT ? FreshRSS_Context::$user_conf->ttl_default : $ttl))) {
 				//Too early to refresh from source, but check whether the feed was updated by another user
 				$mtime = $feed->cacheModifiedTime();
 				if ($feed->lastUpdate() + 10 >= $mtime) {
@@ -303,10 +319,8 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 
 			$feed_history = $feed->keepHistory();
 			if ($isNewFeed) {
-				$feed_history = -1; //∞
-			} elseif ($feed_history == -2) {
-				// TODO: -2 must be a constant!
-				// -2 means we take the default value from configuration
+				$feed_history = FreshRSS_Feed::KEEP_HISTORY_INFINITE;
+			} elseif (FreshRSS_Feed::KEEP_HISTORY_DEFAULT === $feed_history) {
 				$feed_history = FreshRSS_Context::$user_conf->keep_history_default;
 			}
 			$needFeedCacheRefresh = false;
@@ -339,8 +353,10 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 						} else {	//This entry already exists but has been updated
 							//Minz_Log::debug('Entry with GUID `' . $entry->guid() . '` updated in feed ' . $feed->id() .
 								//', old hash ' . $existingHash . ', new hash ' . $entry->hash());
-							//TODO: Make an updated/is_read policy by feed, in addition to the global one.
-							$needFeedCacheRefresh = FreshRSS_Context::$user_conf->mark_updated_article_unread;
+							$mark_updated_article_unread = $feed->attributes('mark_updated_article_unread') !== null ? (
+									$feed->attributes('mark_updated_article_unread')
+								) : FreshRSS_Context::$user_conf->mark_updated_article_unread;
+							$needFeedCacheRefresh = $mark_updated_article_unread;
 							$entry->_isRead(FreshRSS_Context::$user_conf->mark_updated_article_unread ? false : null);	//Change is_read according to policy.
 							if (!$entryDAO->inTransaction()) {
 								$entryDAO->beginTransaction();
@@ -351,15 +367,18 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 						// This entry should not be added considering configuration and date.
 						$oldGuids[] = $entry->guid();
 					} else {
+						$read_upon_reception = $feed->attributes('read_upon_reception') !== null ? (
+								$feed->attributes('read_upon_reception')
+							) : FreshRSS_Context::$user_conf->mark_when['reception'];
 						if ($isNewFeed) {
 							$id = min(time(), $entry_date) . uSecString();
-							$entry->_isRead($is_read);
+							$entry->_isRead($read_upon_reception);
 						} elseif ($entry_date < $date_min) {
 							$id = min(time(), $entry_date) . uSecString();
 							$entry->_isRead(true);	//Old article that was not in database. Probably an error, so mark as read
 						} else {
 							$id = uTimeString();
-							$entry->_isRead($is_read);
+							$entry->_isRead($read_upon_reception);
 						}
 						$entry->_id($id);
 
@@ -371,7 +390,7 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 
 						if ($pubSubHubbubEnabled && !$simplePiePush) {	//We use push, but have discovered an article by pull!
 							$text = 'An article was discovered by pull although we use PubSubHubbub!: Feed ' . $url . ' GUID ' . $entry->guid();
-							file_put_contents(USERS_PATH . '/_/log_pshb.txt', date('c') . "\t" . $text . "\n", FILE_APPEND);
+							Minz_Log::warning($text, PSHB_LOG);
 							Minz_Log::warning($text);
 							$pubSubHubbubEnabled = false;
 							$feed->pubSubHubbubError(true);
@@ -394,7 +413,7 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 					$entryDAO->beginTransaction();
 				}
 
-				$nb = $feedDAO->cleanOldEntries($feed->id(),
+				$nb = $entryDAO->cleanOldEntries($feed->id(),
 				                                $date_min,
 				                                max($feed_history, count($entries) + 10));
 				if ($nb > 0) {
@@ -625,5 +644,15 @@ class FreshRSS_feed_Controller extends Minz_ActionController {
 		} else {
 			Minz_Request::bad(_t('feedback.sub.feed.error'), $redirect_url);
 		}
+	}
+
+	/**
+	 * This method update TTL values for feeds if needed.
+	 * It changes the old default value (-2) to the new default value (0).
+	 * It changes the old disabled value (-1) to the default disabled value.
+	 */
+	private function updateTTL() {
+		$feedDAO = FreshRSS_Factory::createFeedDao();
+		$feedDAO->updateTTL();
 	}
 }

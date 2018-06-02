@@ -1,6 +1,10 @@
 <?php
 
 return array(
+	'api' => array(
+		'documentation' => 'Copy the following URL to use it within an external tool.',// TODO
+		'title' => 'API',// TODO
+	),
 	'bookmarklet' => array(
 		'documentation' => 'Drag this button to your bookmarks toolbar or right-click it and choose "Bookmark This Link". Then click "Subscribe" button in any page you want to subscribe to.',// TODO
 		'label' => 'Subscribe',// TODO
@@ -28,14 +32,22 @@ return array(
 		'description' => 'Description',// TODO
 		'empty' => 'This feed is empty. Please verify that it is still maintained.',// TODO
 		'error' => 'This feed has encountered a problem. Please verify that it is always reachable then actualize it.',// TODO
-		'in_main_stream' => 'Show in main stream',// TODO
 		'informations' => 'Information',// TODO
 		'keep_history' => 'Minimum number of articles to keep',// TODO
 		'moved_category_deleted' => 'When you delete a category, its feeds are automatically classified under <em>%s</em>.',// TODO
+		'mute' => 'mute', // TODO
 		'no_selected' => 'No feed selected.',// TODO
 		'number_entries' => '%d articles',// TODO
+		'priority' => array(
+			'_' => 'Visibility', // TODO
+			'archived' => 'Do not show (archived)', // TODO
+			'main_stream' => 'Show in main stream', // TODO
+			'normal' => 'Show in its category', // TODO
+		),
+		'ssl_verify' => 'Verify SSL security',	//TODO
 		'stats' => 'Statistics',// TODO
 		'think_to_add' => 'You may add some feeds.',// TODO
+		'timeout' => 'Timeout in seconds',	//TODO
 		'title' => 'Title',// TODO
 		'title_add' => 'Add a RSS feed',// TODO
 		'ttl' => 'Do not automatically refresh more often than',// TODO

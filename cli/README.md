@@ -32,9 +32,13 @@ Options in parenthesis are optional.
 ```sh
 cd /usr/share/FreshRSS
 
+./cli/prepare.php
+# Ensure the needed directories in ./data/
+
 ./cli/do-install.php --default_user admin ( --auth_type form --environment production --base_url https://rss.example.net/ --language en --title FreshRSS --allow_anonymous --api_enabled --db-type mysql --db-host localhost:3306 --db-user freshrss --db-password dbPassword123 --db-base freshrss --db-prefix freshrss )
 # --auth_type can be: 'form' (default), 'http_auth' (using the Web server access control), 'none' (dangerous)
 # --db-type can be: 'sqlite' (default), 'mysql' (MySQL or MariaDB), 'pgsql' (PostgreSQL)
+# --base_url should be a public (routable) URL if possible, and is used for push (PubSubHubbub), for some API functions (e.g. favicons), and external URLs in FreshRSS.
 # --environment can be: 'production' (default), 'development' (for additional log messages)
 # --language can be: 'en' (default), 'fr', or one of the [supported languages](../app/i18n/)
 # --db-prefix is an optional prefix in front of the names of the tables. We suggest using 'freshrss_'
@@ -69,6 +73,9 @@ cd /usr/share/FreshRSS
 # Returns: 1) a * iff the user is admin, 2) the name of the user,
 #  3) the date/time of last user action, 4) the size occupied,
 #  and the number of: 5) categories, 6) feeds, 7) read articles, 8) unread articles, and 9) favourites
+
+./cli/db-optimize.php --user username
+# Optimize database (reduces the size) for a given user (perform `OPTIMIZE TABLE` in MySQL, `VACUUM` in SQLite)
 ```
 
 
@@ -96,51 +103,5 @@ Example to get the number of feeds of a given user:
 
 # Install and updates
 
-## Using git
-
-If you manage FreshRSS via command line, then installing and updating FreshRSS can be done via git:
-
-```sh
-# If your local user does not have write access, prefix all commands by sudo:
-sudo ...
-
-# Install FreshRSS
-cd /usr/share/
-git clone https://github.com/FreshRSS/FreshRSS.git
-
-# Perform all commands below in your FreshRSS directory:
-cd /usr/share/FreshRSS
-
-# Use the development version of FreshRSS
-git checkout -b dev origin/dev
-
-# Check out a specific version of FreshRSS
-# See release names on https://github.com/FreshRSS/FreshRSS/releases
-# You will then need to manually change version
-# or checkout master or dev branch to get new versions
-git checkout 1.7.0
-
-# Verify what branch is used
-git branch
-
-# Check whether there is a new version of FreshRSS,
-# assuming you are on the /master or /dev branch
-git fetch --all
-git status
-
-# Discard manual changes (do a backup before)
-git reset --hard
-# Then re-delete the file forcing the setup wizard
-rm data/do-install.txt
-
-# Delete manual additions (do a backup before)
-git clean -f -d
-
-# Update to a newer version of FreshRSS,
-# assuming you are on the /master or /dev branch
-git pull
-
-# Set the rights so that your Web server can access the files
-# (Example for Debian / Ubuntu)
-chown -R :www-data . && chmod -R g+r . && chmod -R g+w ./data/
-```
+If you want to administrate FreshRSS using git, please read our [installation docs](https://freshrss.github.io/FreshRSS/en/admins/02_Installation.html)
+and [update guidelines](https://freshrss.github.io/FreshRSS/en/admins/03_Updating.html). 

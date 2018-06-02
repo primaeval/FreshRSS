@@ -15,10 +15,10 @@ return array(
 		),
 		'login' => array(
 			'invalid' => '用户名或密码无效',
-			'success' => '你已成功登录',
+			'success' => '登录成功',
 		),
 		'logout' => array(
-			'success' => '你已登出',
+			'success' => '登出成功',
 		),
 		'no_password_set' => '管理员密码尚未设置。此特性不可用。',
 	),
@@ -31,11 +31,11 @@ return array(
 	'extensions' => array(
 		'already_enabled' => '%s 已启用',
 		'disable' => array(
-			'ko' => '%s 禁用失败。<a href="%s">检查 FressRSS 日志</a> 查看详情。',
+			'ko' => '%s 禁用失败。<a href="%s">检查 FreshRSS 日志</a> 查看详情。',
 			'ok' => '%s 现已禁用',
 		),
 		'enable' => array(
-			'ko' => '%s 启用失败。<a href="%s">检查 FressRSS 日志</a> 查看详情。',
+			'ko' => '%s 启用失败。<a href="%s">检查 FreshRSS 日志</a> 查看详情。',
 			'ok' => '%s 现已禁用',
 		),
 		'no_access' => '你无权访问 %s',
@@ -43,7 +43,7 @@ return array(
 		'not_found' => '%s 不存在',
 	),
 	'import_export' => array(
-		'export_no_zip_extension' => '服务器未启用 ZIP 扩展。请尝试一个一个导出文件。',
+		'export_no_zip_extension' => '服务器未启用 ZIP 扩展。请尝试逐个导出文件。',
 		'feeds_imported' => '你的 RSS 源已导入，即将更新',
 		'feeds_imported_with_errors' => '你的 RSS 源已导入，但发生错误',
 		'file_cannot_be_uploaded' => '文件未能上传！',
@@ -72,7 +72,7 @@ return array(
 			'already_subscribed' => '你已订阅 <em>%s</em>',
 			'deleted' => 'RSS 源已删除',
 			'error' => 'RSS 源更新失败',
-			'internal_problem' => 'RSS 源添加失败。<a href="%s">检查 FressRSS 日志</a> 查看详情。',
+			'internal_problem' => 'RSS 源添加失败。<a href="%s">检查 FreshRSS 日志</a> 查看详情。', // @todo
 			'invalid_url' => 'URL <em>%s</em> 无效',
 			'marked_read' => 'RSS 源已被设为已读',
 			'n_actualized' => '%d 个 RSS 源已更新',
@@ -100,6 +100,10 @@ return array(
 		'deleted' => array(
 			'_' => '用户 %s 已删除',
 			'error' => '用户 %s 删除失败',
+		),
+		'updated' => array(
+			'_' => 'User %s has been updated', // TODO
+			'error' => 'User %s has not been updated', // TODO
 		),
 	),
 	'profile' => array(

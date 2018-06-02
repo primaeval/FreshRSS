@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 $isUpdate = false;
-require('_update-or-create-user.php');
+require(__DIR__ . '/_update-or-create-user.php');
 
 $username = $options['user'];
 if (!FreshRSS_user_Controller::checkUsername($username)) {
@@ -20,7 +20,7 @@ $ok = FreshRSS_user_Controller::createUser($username,
 	empty($options['password']) ? '' : $options['password'],
 	empty($options['api_password']) ? '' : $options['api_password'],
 	$values,
-	!isset($options['no-default-feeds']));
+	!isset($options['no_default_feeds']));
 
 if (!$ok) {
 	fail('FreshRSS could not create user!');

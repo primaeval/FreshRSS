@@ -37,10 +37,12 @@ return array(
 			'no_limit' => 'Nessun limite',
 			'thin' => 'Stretto',
 		),
+		'show_nav_buttons' => 'Show the navigation buttons',	//TODO
 	),
 	'query' => array(
 		'_' => 'Ricerche personali',
 		'deprecated' => 'Questa query non è più valida. La categoria o il feed di riferimento non stati cancellati.',
+		'display' => 'Display user query results', // TODO
 		'filter' => 'Filtro applicato:',
 		'get_all' => 'Mostra tutti gli articoli',
 		'get_category' => 'Mostra la categoria "%s" ',
@@ -51,6 +53,7 @@ return array(
 		'number' => 'Ricerca n°%d',
 		'order_asc' => 'Mostra prima gli articoli più vecchi',
 		'order_desc' => 'Mostra prima gli articoli più nuovi',
+		'remove' => 'Remove user query', // TODO
 		'search' => 'Cerca per "%s"',
 		'state_0' => 'Mostra tutti gli articoli',
 		'state_1' => 'Mostra gli articoli letti',
@@ -125,6 +128,7 @@ return array(
 	),
 	'sharing' => array(
 		'_' => 'Condivisione',
+		'add' => 'Add a sharing method', // TODO
 		'blogotext' => 'Blogotext',
 		'diaspora' => 'Diaspora*',
 		'email' => 'Email',
@@ -132,6 +136,7 @@ return array(
 		'g+' => 'Google+',
 		'more_information' => 'Ulteriori informazioni',
 		'print' => 'Stampa',
+		'remove' => 'Remove sharing method', // TODO
 		'shaarli' => 'Shaarli',
 		'share_name' => 'Nome condivisione',
 		'share_url' => 'URL condivisione',
@@ -148,6 +153,7 @@ return array(
 		'collapse_article' => 'Collassa articoli',
 		'first_article' => 'Salta al primo articolo',
 		'focus_search' => 'Modulo di ricerca',
+		'global_view' => 'Switch to global view', // TODO
 		'help' => 'Mostra documentazione',
 		'javascript' => 'JavaScript deve essere abilitato per poter usare i comandi da tastiera',
 		'last_article' => 'Salta all ultimo articolo',
@@ -157,13 +163,17 @@ return array(
 		'navigation' => 'Navigazione',
 		'navigation_help' => 'Con il tasto "Shift" i comandi di navigazione verranno applicati ai feeds.<br/>Con il tasto "Alt" i comandi di navigazione verranno applicati alle categorie.',
 		'next_article' => 'Salta al contenuto successivo',
+		'normal_view' => 'Switch to normal view', // TODO
 		'other_action' => 'Altre azioni',
 		'previous_article' => 'Salta al contenuto precedente',
+		'reading_view' => 'Switch to reading view', // TODO
+		'rss_view' => 'Open RSS view in a new tab', // TODO
 		'see_on_website' => 'Vai al sito fonte',
 		'shift_for_all_read' => '+ <code>shift</code> per segnare tutti gli articoli come letti',
 		'title' => 'Comandi da tastiera',
 		'user_filter' => 'Accedi alle ricerche personali',
 		'user_filter_help' => 'Se è presente una sola ricerca personale verrà usata quella, altrimenti usare anche il numero associato.',
+		'views' => 'Views', // TODO
 	),
 	'user' => array(
 		'articles_and_size' => '%s articoli (%s)',

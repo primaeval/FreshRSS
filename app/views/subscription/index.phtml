@@ -40,7 +40,7 @@
 						<input type="text" name="http_user" id="http_user_feed" value=" " autocomplete="off" placeholder="<?php echo _t('sub.feed.auth.username'); ?>" />
 					</li>
 					<li class="input">
-						<input type="password" name="http_pass" id="http_pass_feed" autocomplete="off" placeholder="<?php echo _t('sub.feed.auth.password'); ?>" />
+						<input type="password" name="http_pass" id="http_pass_feed" autocomplete="new-password" placeholder="<?php echo _t('sub.feed.auth.password'); ?>" />
 					</li>
 				</ul>
 			</div>
@@ -125,7 +125,7 @@
 						$error = $feed->inError() ? ' error' : '';
 						$empty = $feed->nbEntries() == 0 ? ' empty' : '';
 			?>
-			<li class="item feed<?php echo $error, $empty; ?>"
+			<li class="item feed<?php echo $error, $empty, $feed->mute() ? ' mute': ''; ?>"
 			    draggable="true"
 			    data-feed-id="<?php echo $feed->id(); ?>"
 			    dropzone="move">

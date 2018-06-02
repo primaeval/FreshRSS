@@ -1,6 +1,10 @@
 <?php
 
 return array(
+	'api' => array(
+		'documentation' => 'Copy the following URL to use it within an external tool.',
+		'title' => 'API',
+	),
 	'bookmarklet' => array(
 		'documentation' => 'Drag this button to your bookmarks toolbar or right-click it and choose "Bookmark This Link". Then click "Subscribe" button in any page you want to subscribe to.',
 		'label' => 'Subscribe',
@@ -28,14 +32,22 @@ return array(
 		'description' => 'Description',
 		'empty' => 'This feed is empty. Please verify that it is still maintained.',
 		'error' => 'This feed has encountered a problem. Please verify that it is always reachable then update it.',
-		'in_main_stream' => 'Show in main stream',
 		'informations' => 'Information',
 		'keep_history' => 'Minimum number of articles to keep',
 		'moved_category_deleted' => 'When you delete a category, its feeds are automatically classified under <em>%s</em>.',
+		'mute' => 'mute',
 		'no_selected' => 'No feed selected.',
 		'number_entries' => '%d articles',
+		'priority' => array(
+			'_' => 'Visibility',
+			'archived' => 'Do not show (archived)',
+			'main_stream' => 'Show in main stream',
+			'normal' => 'Show in its category',
+		),
+		'ssl_verify' => 'Verify SSL security',
 		'stats' => 'Statistics',
 		'think_to_add' => 'You may add some feeds.',
+		'timeout' => 'Timeout in seconds',
 		'title' => 'Title',
 		'title_add' => 'Add a RSS feed',
 		'ttl' => 'Do not automatically refresh more often than',

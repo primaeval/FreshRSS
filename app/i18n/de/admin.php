@@ -112,6 +112,13 @@ return array(
 		),
 		'title' => 'Erweiterungen',
 		'user' => 'Benutzer-Erweiterungen',
+		'community' => 'Verfügbare Community Erweiterungen',
+		'name' => 'Name',
+		'version' => 'Version',
+		'description' => 'Beschreibungen',
+		'author' => 'Autor',
+		'latest' => 'Installiert',
+		'update' => 'Update verfügbar',
 	),
 	'stats' => array(
 		'_' => 'Statistiken',
@@ -146,11 +153,11 @@ return array(
 		'top_feed' => 'Top 10-Feeds',
 	),
 	'system' => array(
-		'_' => 'System configuration', // @todo translate
-		'auto-update-url' => 'Auto-update server URL', // @todo translate
-		'instance-name' => 'Instance name', // @todo translate
-		'max-categories' => 'Categories per user limit', // @todo translate
-		'max-feeds' => 'Feeds per user limit', // @todo translate
+		'_' => 'Systemeinstellungen',
+		'auto-update-url' => 'Auto-update URL',
+		'instance-name' => 'Dein Reader Name',
+		'max-categories' => 'Anzahl erlaubter Kategorien pro Benutzer',
+		'max-feeds' => 'Anzahl erlaubter Feeds pro Benutzer',
 		'registration' => array(
 			'help' => '0 meint, dass es kein Account Limit gibt',
 			'number' => 'Maximale Anzahl von Accounts',
@@ -168,12 +175,15 @@ return array(
 	'user' => array(
 		'articles_and_size' => '%s Artikel (%s)',
 		'create' => 'Neuen Benutzer erstellen',
+		'delete_users' => 'Lösche Benutzer',
 		'language' => 'Sprache',
 		'number' => 'Es wurde bis jetzt %d Account erstellt',
 		'numbers' => 'Es wurden bis jetzt %d Accounts erstellt',
 		'password_form' => 'Passwort<br /><small>(für die Anmeldemethode per Webformular)</small>',
 		'password_format' => 'mindestens 7 Zeichen',
+		'selected' => 'Ausgewählter Benutzer',
 		'title' => 'Benutzer verwalten',
+		'update_users' => 'Aktualisiere Benutzer',
 		'user_list' => 'Liste der Benutzer',
 		'username' => 'Nutzername',
 		'users' => 'Benutzer',

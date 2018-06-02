@@ -1,6 +1,10 @@
 <?php
 
 return array(
+	'api' => array(
+		'documentation' => 'Copy the following URL to use it within an external tool.',// TODO
+		'title' => 'API',// TODO
+	),
 	'bookmarklet' => array(
 		'documentation' => 'Drag this button to your bookmarks toolbar or right-click it and choose "Bookmark This Link". Then click "Subscribe" button in any page you want to subscribe to.',// TODO
 		'label' => 'Subscribe',// TODO
@@ -28,14 +32,22 @@ return array(
 		'description' => 'Tanım',
 		'empty' => 'Bu akış boş. Lütfen akışın aktif olduğuna emin olun.',
 		'error' => 'Bu akışda bir hatayla karşılaşıldı. Lütfen akışın sürekli ulaşılabilir olduğuna emin olun.',
-		'in_main_stream' => 'Ana akışda göster',
 		'informations' => 'Bilgi',
 		'keep_history' => 'En az tutulacak makale sayısı',
 		'moved_category_deleted' => 'Bir kategoriyi silerseniz, içerisindeki akışlar <em>%s</em> içerisine yerleşir.',
+		'mute' => 'mute', // TODO
 		'no_selected' => 'Hiçbir akış seçilmedi.',
 		'number_entries' => '%d makale',
+		'priority' => array(
+			'_' => 'Visibility', // TODO
+			'archived' => 'Do not show (archived)', // TODO
+			'main_stream' => 'Ana akışda göster',
+			'normal' => 'Show in its category', // TODO
+		),
+		'ssl_verify' => 'Verify SSL security',	//TODO
 		'stats' => 'İstatistikler',
 		'think_to_add' => 'Akış ekleyebilirsiniz.',
+		'timeout' => 'Timeout in seconds',	//TODO
 		'title' => 'Başlık',
 		'title_add' => 'RSS akışı ekle',
 		'ttl' => 'Şu kadar süreden fazla otomatik yenileme yapma',

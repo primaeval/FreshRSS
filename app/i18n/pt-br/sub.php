@@ -1,6 +1,15 @@
 <?php
 
 return array(
+	'api' => array(
+		'documentation' => 'Copy the following URL to use it within an external tool.',// TODO
+		'title' => 'API',// TODO
+	),
+	'bookmarklet' => array(
+		'documentation' => 'Drag this button to your bookmarks toolbar or right-click it and choose "Bookmark This Link". Then click "Subscribe" button in any page you want to subscribe to.',// TODO
+		'label' => 'Subscribe',// TODO
+		'title' => 'Bookmarklet',// TODO
+	),
 	'category' => array(
 		'_' => 'Categoria',
 		'add' => 'Adicionar uma categoria',
@@ -23,14 +32,22 @@ return array(
 		'description' => 'Descrição',
 		'empty' => 'Este feed está vazio. Por favor verifique ele ainda é mantido.',
 		'error' => 'Este feed encontra-se com problema. Por favor verifique se ele ainda está disponível e atualize-o.',
-		'in_main_stream' => 'Mostrar na tela principal',
 		'informations' => 'Informações',
 		'keep_history' => 'Número mínimo de artigos para manter',
 		'moved_category_deleted' => 'Quando você deleta uma categoria, seus feeds são automaticamente classificados como <em>%s</em>.',
+		'mute' => 'mute', // TODO
 		'no_selected' => 'Nenhum feed selecionado.',
 		'number_entries' => '%d artigos',
+		'priority' => array(
+			'_' => 'Visibility', // TODO
+			'archived' => 'Do not show (archived)', // TODO
+			'main_stream' => 'Mostrar na tela principal',
+			'normal' => 'Show in its category', // TODO
+		),
+		'ssl_verify' => 'Verify SSL security',	//TODO
 		'stats' => 'Estatísticas',
 		'think_to_add' => 'Você deve adicionar alguns feeds.',
+		'timeout' => 'Timeout in seconds',	//TODO
 		'title' => 'Título',
 		'title_add' => 'Adicionar o RSS feed',
 		'ttl' => 'Não atualize automáticamente mais que',

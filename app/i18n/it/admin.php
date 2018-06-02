@@ -112,6 +112,13 @@ return array(
 		),
 		'title' => 'Estensioni',
 		'user' => 'Estensioni utente',
+		'community' => 'Available community extensions', // @todo translate
+		'name' => 'Name', // @todo translate
+		'version' => 'Version', // @todo translate
+		'description' => 'Description', // @todo translate
+		'author' => 'Author', // @todo translate
+		'latest' => 'Installed', // @todo translate
+		'update' => 'Update available', // @todo translate
 	),
 	'stats' => array(
 		'_' => 'Statistiche',
@@ -168,12 +175,15 @@ return array(
 	'user' => array(
 		'articles_and_size' => '%s articoli (%s)',
 		'create' => 'Crea nuovo utente',
+		'delete_users' => 'Delete user', // TODO
 		'language' => 'Lingua',
 		'number' => ' %d profilo utente creato',
 		'numbers' => 'Sono presenti %d profili utente',
 		'password_form' => 'Password<br /><small>(per il login classico)</small>',
 		'password_format' => 'Almeno 7 caratteri',
+		'selected' => 'Selected user', // TODO
 		'title' => 'Gestione utenti',
+		'update_users' => 'Update user', // TODO
 		'user_list' => 'Lista utenti',
 		'username' => 'Nome utente',
 		'users' => 'Utenti',

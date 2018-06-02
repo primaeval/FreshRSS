@@ -106,13 +106,14 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo implements FreshRSS_Searchable 
 	public function listCategories($prePopulateFeeds = true, $details = false) {
 		if ($prePopulateFeeds) {
 			$sql = 'SELECT c.id AS c_id, c.name AS c_name, '
-			     . ($details ? 'f.* ' : 'f.id, f.name, f.url, f.website, f.priority, f.error, f.`cache_nbEntries`, f.`cache_nbUnreads` ')
+			     . ($details ? 'f.* ' : 'f.id, f.name, f.url, f.website, f.priority, f.error, f.`cache_nbEntries`, f.`cache_nbUnreads`, f.ttl ')
 			     . 'FROM `' . $this->prefix . 'category` c '
 			     . 'LEFT OUTER JOIN `' . $this->prefix . 'feed` f ON f.category=c.id '
+			     . 'WHERE f.priority >= :priority_normal '
 			     . 'GROUP BY f.id, c_id '
 			     . 'ORDER BY c.name, f.name';
 			$stm = $this->bd->prepare($sql);
-			$stm->execute();
+			$stm->execute(array(':priority_normal' => FreshRSS_Feed::PRIORITY_NORMAL));
 			return self::daoToCategoryPrepopulated($stm->fetchAll(PDO::FETCH_ASSOC));
 		} else {
 			$sql = 'SELECT * FROM `' . $this->prefix . 'category` ORDER BY name';
@@ -133,7 +134,11 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo implements FreshRSS_Searchable 
 		if (isset($cat[0])) {
 			return $cat[0];
 		} else {
-			return false;
+			if (FreshRSS_Context::$isCli) {
+				fwrite(STDERR, 'FreshRSS database error: Default category not found!' . "\n");
+			}
+			Minz_Log::error('FreshRSS database error: Default category not found!');
+			return null;
 		}
 	}
 	public function checkDefault() {
@@ -143,13 +148,27 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo implements FreshRSS_Searchable 
 			$cat = new FreshRSS_Category(_t('gen.short.default_category'));
 			$cat->_id(self::DEFAULTCATEGORYID);
 
+			$sql = 'INSERT INTO `' . $this->prefix . 'category`(id, name) VALUES(?, ?)';
+			if (parent::$sharedDbType === 'pgsql') {
+				//Force call to nextval()
+				$sql .= " RETURNING nextval('" . $this->prefix . "category_id_seq');";
+			}
+			$stm = $this->bd->prepare($sql);
+
 			$values = array(
-				'id' => $cat->id(),
-				'name' => $cat->name(),
+				$cat->id(),
+				$cat->name(),
 			);
 
-			$this->addCategory($values);
+			if ($stm && $stm->execute($values)) {
+				return $this->bd->lastInsertId('"' . $this->prefix . 'category_id_seq"');
+			} else {
+				$info = $stm == null ? array(2 => 'syntax error') : $stm->errorInfo();
+				Minz_Log::error('SQL error check default category: ' . json_encode($info));
+				return false;
+			}
 		}
+		return true;
 	}
 
 	public function count() {

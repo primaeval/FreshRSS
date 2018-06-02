@@ -182,7 +182,7 @@ class FreshRSS_index_Controller extends Minz_ActionController {
 			FreshRSS_Context::$state |= FreshRSS_Entry::STATE_READ;
 		}
 
-		FreshRSS_Context::$search = new FreshRSS_Search(Minz_Request::param('search', ''));
+		FreshRSS_Context::$search = new FreshRSS_BooleanSearch(Minz_Request::param('search', ''));
 		FreshRSS_Context::$order = Minz_Request::param(
 			'order', FreshRSS_Context::$user_conf->sort_order
 		);
@@ -203,7 +203,7 @@ class FreshRSS_index_Controller extends Minz_ActionController {
 		$entryDAO = FreshRSS_Factory::createEntryDao();
 
 		$get = FreshRSS_Context::currentGet(true);
-		if (count($get) > 1) {
+		if (is_array($get)) {
 			$type = $get[0];
 			$id = $get[1];
 		} else {

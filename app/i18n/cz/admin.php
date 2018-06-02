@@ -155,6 +155,13 @@ return array(
 			'help' => '0 znamená žádná omezení účtu',
 			'number' => 'Maximální počet účtů',
 		),
+		'community' => 'Available community extensions', // @todo translate
+		'name' => 'Name', // @todo translate
+		'version' => 'Version', // @todo translate
+		'description' => 'Description', // @todo translate
+		'author' => 'Author', // @todo translate
+		'latest' => 'Installed', // @todo translate
+		'update' => 'Update available', // @todo translate
 	),
 	'update' => array(
 		'_' => 'Aktualizace systému',
@@ -168,12 +175,15 @@ return array(
 	'user' => array(
 		'articles_and_size' => '%s článků (%s)',
 		'create' => 'Vytvořit nového uživatele',
+		'delete_users' => 'Delete user', // TODO
 		'language' => 'Jazyk',
 		'number' => 'Zatím je vytvořen %d účet',
 		'numbers' => 'Zatím je vytvořeno %d účtů',
 		'password_form' => 'Heslo<br /><small>(pro přihlášení webovým formulářem)</small>',
 		'password_format' => 'Alespoň 7 znaků',
+		'selected' => 'Selected user', // TODO
 		'title' => 'Správa uživatelů',
+		'update_users' => 'Update user', // TODO
 		'user_list' => 'Seznam uživatelů',
 		'username' => 'Přihlašovací jméno',
 		'users' => 'Uživatelé',

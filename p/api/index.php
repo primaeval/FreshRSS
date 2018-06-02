@@ -14,7 +14,7 @@
 <dl>
 <dt>Your API address:</dt>
 <dd><?php
-require('../../constants.php');
+require(__DIR__ . '/../../constants.php');
 require(LIB_PATH . '/lib_rss.php');	//Includes class autoloader
 Minz_Configuration::register('system', DATA_PATH . '/config.php', FRESHRSS_PATH . '/config.default.php');
 echo Minz_Url::display('/api/greader.php', 'html', true);
@@ -24,6 +24,17 @@ echo Minz_Url::display('/api/greader.php', 'html', true);
 <li><a href="greader.php/check%2Fcompatibility" rel="nofollow">Check full server configuration</a></li>
 <li><a href="greader.php/check/compatibility" rel="nofollow">Check partial server
 configuration (without <code>%2F</code> support)</a></li>
+</ul>
+
+<h2>Fever compatible API</h2>
+<dl>
+<dt>Your API address:</dt>
+<dd><?php
+echo Minz_Url::display('/api/fever.php', 'html', true);
+?></dd>
+</dl>
+<ul>
+<li><a href="fever.php?api" rel="nofollow">Test</a></li>
 </ul>
 
 </body>

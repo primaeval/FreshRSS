@@ -37,10 +37,12 @@ return array(
 			'no_limit' => 'Sin límite',
 			'thin' => 'Estrecho',
 		),
+		'show_nav_buttons' => 'Show the navigation buttons',	//TODO
 	),
 	'query' => array(
 		'_' => 'Consultas de usuario',
 		'deprecated' => 'Esta consulta ya no es válida. La categoría referenciada o fuente ha sido eliminada.',
+		'display' => 'Display user query results', // TODO
 		'filter' => 'Filtro aplicado:',
 		'get_all' => 'Mostrar todos los artículos',
 		'get_category' => 'Mostrar la categoría "%s"',
@@ -51,6 +53,7 @@ return array(
 		'number' => 'Consulta n° %d',
 		'order_asc' => 'Mostrar primero los artículos más antiguos',
 		'order_desc' => 'Mostrar primero los artículos más recientes',
+		'remove' => 'Remove user query', // TODO
 		'search' => 'Buscar "%s"',
 		'state_0' => 'Mostrar todos los artículos',
 		'state_1' => 'Mostrar artículos leídos',
@@ -125,6 +128,7 @@ return array(
 	),
 	'sharing' => array(
 		'_' => 'Compartir',
+		'add' => 'Add a sharing method', // TODO
 		'blogotext' => 'Blogotext',
 		'diaspora' => 'Diaspora*',
 		'email' => 'Email',
@@ -132,6 +136,7 @@ return array(
 		'g+' => 'Google+',
 		'more_information' => 'Más información',
 		'print' => 'Print',
+		'remove' => 'Remove sharing method', // TODO
 		'shaarli' => 'Shaarli',
 		'share_name' => 'Compartir nombre a mostrar',
 		'share_url' => 'Compatir URL a usar',
@@ -148,6 +153,7 @@ return array(
 		'collapse_article' => 'Contraer',
 		'first_article' => 'Saltar al primer artículo',
 		'focus_search' => 'Acceso a la casilla de búsqueda',
+		'global_view' => 'Switch to global view', // TODO
 		'help' => 'Mostrar documentación',
 		'javascript' => 'JavaScript debe estar activado para poder usar atajos de teclado',
 		'last_article' => 'Saltar al último artículo',
@@ -157,13 +163,17 @@ return array(
 		'navigation' => 'Navegación',
 		'navigation_help' => 'Con el modificador "Mayúsculas" es posible usar los atajos de teclado en las fuentes.<br/>Con el modificador "Alt" es posible aplicar los atajos de teclado en las categorías.',
 		'next_article' => 'Saltar al siguiente artículo',
+		'normal_view' => 'Switch to normal view', // TODO
 		'other_action' => 'Otras acciones',
 		'previous_article' => 'Saltar al artículo anterior',
+		'reading_view' => 'Switch to reading view', // TODO
+		'rss_view' => 'Open RSS view in a new tab', // TODO
 		'see_on_website' => 'Ver en la web original',
 		'shift_for_all_read' => '+ <code>mayúsculas</code> para marcar todos los artículos como leídos',
 		'title' => 'Atajos de teclado',
 		'user_filter' => 'Acceso a filtros de usuario',
 		'user_filter_help' => 'Si solo hay un filtro de usuario, ese será el que se use. En caso contrario, los filtros están accesibles por su númeración.',
+		'views' => 'Views', // TODO
 	),
 	'user' => array(
 		'articles_and_size' => '%s artículos (%s)',

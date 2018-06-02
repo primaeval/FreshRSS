@@ -1,6 +1,10 @@
 <?php
 
 return array(
+	'api' => array(
+		'documentation' => 'Copier l’URL suivante dans l’outil qui utilisera l’API.',
+		'title' => 'API',
+	),
 	'bookmarklet' => array(
 		'documentation' => 'Glisser ce bouton dans la barre des favoris ou cliquer droit dessus et choisir "Enregistrer ce lien". Ensuite, cliquer sur le bouton "S’abonner" sur les pages auxquelles vous voulez vous abonner.',
 		'label' => 'S’abonner',
@@ -28,14 +32,22 @@ return array(
 		'description' => 'Description',
 		'empty' => 'Ce flux est vide. Veuillez vérifier qu’il est toujours maintenu.',
 		'error' => 'Ce flux a rencontré un problème. Veuillez vérifier qu’il est toujours accessible puis actualisez-le.',
-		'in_main_stream' => 'Afficher dans le flux principal',
 		'informations' => 'Informations',
 		'keep_history' => 'Nombre minimum d’articles à conserver',
 		'moved_category_deleted' => 'Lors de la suppression d’une catégorie, ses flux seront automatiquement classés dans <em>%s</em>.',
+		'mute' => 'muet',
 		'no_selected' => 'Aucun flux sélectionné.',
 		'number_entries' => '%d articles',
+		'priority' => array(
+			'_' => 'Visibilité',
+			'archived' => 'Ne pas afficher (archivé)',
+			'main_stream' => 'Afficher dans le flux principal',
+			'normal' => 'Afficher dans sa catégorie',
+		),
+		'ssl_verify' => 'Vérification sécurité SSL',
 		'stats' => 'Statistiques',
 		'think_to_add' => 'Vous pouvez ajouter des flux.',
+		'timeout' => 'Délai d’attente en secondes',
 		'title' => 'Titre',
 		'title_add' => 'Ajouter un flux RSS',
 		'ttl' => 'Ne pas automatiquement rafraîchir plus souvent que',

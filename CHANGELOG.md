@@ -1,8 +1,151 @@
-﻿# Changelog
+﻿# FreshRSS changelog
+
+## 2018-06-0X FreshRSS 1.10.3-dev
+
+* API
+	* Add support for Fever compatible API, enabling more clients [#1406](https://github.com/FreshRSS/FreshRSS/pull/1406)
+		* iOS: [Fiery Feeds](https://itunes.apple.com/app/fiery-feeds-rss-reader/id1158763303), [Unread](https://itunes.apple.com/app/unread-rss-reader/id1252376153)
+		* MacOS: [Readkit](https://itunes.apple.com/app/readkit/id588726889)
+* Features
+	* Several per-feed options (implemented in JSON) [#1838](https://github.com/FreshRSS/FreshRSS/pull/1838)
+		* Mark updated articles as read [#891](https://github.com/FreshRSS/FreshRSS/issues/891)
+		* Mark as read upon reception [#1702](https://github.com/FreshRSS/FreshRSS/issues/1702)
+		* Only for admin user [#1905](https://github.com/FreshRSS/FreshRSS/pull/1905)
+			* Feed cURL timeout
+			* Ignore SSL (unsafe) [#1811](https://github.com/FreshRSS/FreshRSS/issues/1811)
+	* Light Boolean search implementation [#879](https://github.com/FreshRSS/FreshRSS/issues/879)
+		* All parts are implicitly `AND` (which must not be written), except if `OR` is stated.
+		* No use of parentheses. Support for quotes to disable the Boolean search, like `"This or that"`.
+		* Example: `Hello intitle:World OR date:P1D example OR author:Else intitle:"This or that"`
+	* Share with Pocket [#1884](https://github.com/FreshRSS/FreshRSS/issues/1884)
+* Deployment
+	* Includes an optional cron daemon in Docker to refresh feeds automatically [#1869](https://github.com/FreshRSS/FreshRSS/issues/1869)
+	* Docker Compose example [#1882](https://github.com/FreshRSS/FreshRSS/pull/1882)
+* Bug fixing
+	* Fix Docker bug affecting Apache `CustomLog` (unwanted local copy of access logs), `ErrorLog`, `Listen` (IPv6 bug) [#1873](https://github.com/FreshRSS/FreshRSS/pull/1873)
+	* Fix muted feeds that were not actually muted [#1844](https://github.com/FreshRSS/FreshRSS/issues/1844)
+	* Fix null exception in shares, showing only the first article [#1824](https://github.com/FreshRSS/FreshRSS/issues/1824)
+	* Fix error during import[#1890](https://github.com/FreshRSS/FreshRSS/issues/1890)
+		* Fix additional automatic sequence bug with PostgreSQL [#1907](https://github.com/FreshRSS/FreshRSS/pull/1907)
+	* Fix errors in case of empty/wrong username when updating user settings [#1857](https://github.com/FreshRSS/FreshRSS/pull/1857)
+	* Fixes in subscription menu [#1858](https://github.com/FreshRSS/FreshRSS/pull/1858)
+	* Fix allowing Unix sockets for MySQL and PostgreSQL [#1888](https://github.com/FreshRSS/FreshRSS/issues/1888)
+	* Fix `create-user` CLI option `no_default_feeds` [#1900](https://github.com/FreshRSS/FreshRSS/pull/1900)
+* SimplePie
+	* Work-around for feeds with invalid non-unique GUIDs [#1887](https://github.com/FreshRSS/FreshRSS/pull/1887)
+	* Fix for Atom feeds using a namespace for type [#1892](https://github.com/FreshRSS/FreshRSS/issues/1892)
+	* Remove some warnings during parsing attemps of some bad feeds [#1909](https://github.com/FreshRSS/FreshRSS/pull/1909)
+* Security
+	* Strip HTTP credentials from HTTP Referer in SimplePie [#1891](https://github.com/FreshRSS/FreshRSS/pull/1891)
+	* Use `autocomplete="new-password"` to prevent form autocomplete in user management pages (fix bug with e.g. Firefox) [#1877](https://github.com/FreshRSS/FreshRSS/pull/1877)
+* UI
+	* Add tooltips on user queries [#1823](https://github.com/FreshRSS/FreshRSS/pull/1823)
+* I18n
+	* Improve i18n tools [#1829](https://github.com/FreshRSS/FreshRSS/pull/1829)
+	* Updated German [#1856](https://github.com/FreshRSS/FreshRSS/pull/1856)
+	* Updated Dutch [#1903](https://github.com/FreshRSS/FreshRSS/pull/1903)
+* Misc.
+	* Use cURL for fetching full articles content [#1870](https://github.com/FreshRSS/FreshRSS/issues/1870)
+	* Add error log information when SQLite has not enough temp space [#1816](https://github.com/FreshRSS/FreshRSS/issues/1816)
+	* Allow extension dir to be a symlink [#1911](https://github.com/FreshRSS/FreshRSS/pull/1911)
+
+
+## 2018-03-09 FreshRSS 1.10.2 (Docker only)
+
+* Bug fixing
+	* Fix Docker image for OPML import [#1819](https://github.com/FreshRSS/FreshRSS/pull/1819)
+	* Fix Docker image for CSS selectors [#1821](https://github.com/FreshRSS/FreshRSS/issues/1821)
+	* Fix Docker other missing PHP extensions [#1822](https://github.com/FreshRSS/FreshRSS/pull/1822)
+
+
+## 2018-03-04 FreshRSS 1.10.1
+
+* Deployment
+	* New Docker image, smaller (based on Alpine Linux) and newer (with PHP 7.1) [#1813](https://github.com/FreshRSS/FreshRSS/pull/1813)
+		* with [automated build](https://hub.docker.com/r/freshrss/freshrss/) for x86-64 (AMD64) architectures
+* CLI
+	* New command `./cli/prepare.php` to make the needed sub-directories of the `./data/` directory [#1813](https://github.com/FreshRSS/FreshRSS/pull/1813)
+* Bug fixing
+	* Fix API bug for EasyRSS [#1799](https://github.com/FreshRSS/FreshRSS/issues/1799)
+	* Fix login bug when using double authentication (HTTP + Web form) [#1807](https://github.com/FreshRSS/FreshRSS/issues/1807)
+	* Fix database upgrade for FreshRSS versions older than 1.1.1 [#1803](https://github.com/FreshRSS/FreshRSS/issues/1803)
+	* Fix cases of double port in FreshRSS public URL [#1815](https://github.com/FreshRSS/FreshRSS/pull/1815)
+* UI
+	* Add tooltips on share configuration buttons [#1805](https://github.com/FreshRSS/FreshRSS/pull/1805)
+* Misc.
+	* Move `./data/shares.php` to `./app/shares.php` to facilitate updates [#1812](https://github.com/FreshRSS/FreshRSS/pull/1812)
+	* Show article author email when there is no author name [#1801](https://github.com/FreshRSS/FreshRSS/pull/1801)
+	* Improve translation tools [#1808](https://github.com/FreshRSS/FreshRSS/pull/1808)
+
+
+## 2018-02-24 FreshRSS 1.10.0
+
+* API
+	* Add compatibility with [FeedMe](https://play.google.com/store/apps/details?id=com.seazon.feedme) 3.5.3+ on Android [#1774](https://github.com/FreshRSS/FreshRSS/pull/1774)
+* Features
+	* Ability to pause feeds, and to hide them from categories [#1750](https://github.com/FreshRSS/FreshRSS/pull/1750)
+	* Ability for the admin to reset a user’s password [#960](https://github.com/FreshRSS/FreshRSS/issues/960)
+* Security
+	* Allow HTTP Auth login with `REDIRECT_REMOTE_USER` when using Apache internal redirect [#1772](https://github.com/FreshRSS/FreshRSS/pull/1772)
+* UI
+	* New icons for marking as favourite and marking as read in the Reading View [#603](https://github.com/FreshRSS/FreshRSS/issues/603)
+	* Add shortcuts to switch views [#1755](https://github.com/FreshRSS/FreshRSS/pull/1755)
+* Bug fixing
+	* Fix login bug when HTTP `REMOTE_USER` changes (used by YunoHost) [#1756](https://github.com/FreshRSS/FreshRSS/pull/1756)
+	* Fix warning in PHP 7.2 [#1739](https://github.com/FreshRSS/FreshRSS/pull/1739)
+* Extensions
+	* Allow extensions to define their own reading view [#1714](https://github.com/FreshRSS/FreshRSS/pull/1714)
+* I18n
+	* Updated Chinese [#1769](https://github.com/FreshRSS/FreshRSS/pull/1769)
+	* Updated Dutch [#1792](https://github.com/FreshRSS/FreshRSS/pull/1792)
+	* Updated Korean [#1776](https://github.com/FreshRSS/FreshRSS/pull/1776)
+* Misc.
+	* More sites in `force-https.default.txt` [#1745](https://github.com/FreshRSS/FreshRSS/pull/1745)
+	* Trim URLs when adding new feeds [#1778](https://github.com/FreshRSS/FreshRSS/pull/1778)
+
+
+## 2017-12-17 FreshRSS 1.9.0
+
+* Features
+	* Share with Mastodon [#1521](https://github.com/FreshRSS/FreshRSS/issues/1521)
+* UI
+	* Add more Unicode glyphs in the Open Sans font [#1032](https://github.com/FreshRSS/FreshRSS/pull/1032)
+	* Show URL to add subscriptions from third-party tools [#1247](https://github.com/FreshRSS/FreshRSS/issues/1247)
+	* Improved message when checking for new versions [#1586](https://github.com/FreshRSS/FreshRSS/issues/1586)
+* SimplePie
+	* Remove "SimplePie" name from HTTP User-Agent string [#1656](https://github.com/FreshRSS/FreshRSS/pull/1656)
+* Bug fixing
+	* Work-around for PHP 5.6.0- `CURLOPT_FOLLOWLOCATION` `open_basedir` bug in favicons and PubSubHubbub [#1655](https://github.com/FreshRSS/FreshRSS/issues/1655)
+	* Fix PDO PostgreSQL detection [#1690](https://github.com/FreshRSS/FreshRSS/issues/1690)
+	* Fix punycode warning in PHP 7.2 [#1699](https://github.com/FreshRSS/FreshRSS/issues/1699)
+	* Fix crash when adding a new category while adding a new feed [#1731](https://github.com/FreshRSS/FreshRSS/pull/1731)
+	* Fix ExtensionManager exception handling [#1724](https://github.com/FreshRSS/FreshRSS/pull/1724)
+* CLI
+	* New command `./cli/db-optimize.php` for database optimisation [#1583](https://github.com/FreshRSS/FreshRSS/issues/1583)
+	* Check PHP requirements before running `actualize_script.php` (cron for refreshing feeds) [#1711](https://github.com/FreshRSS/FreshRSS/pull/1711)
+* SQL
+	* Perform `VACUUM` on SQLite and PostgreSQL databases when optimisation is requested [#918](https://github.com/FreshRSS/FreshRSS/issues/918)
+* API
+	* Breaking change / compatibility fix (EasyRSS): Provide `link` to articles without HTML-encoding [#1683](https://github.com/FreshRSS/FreshRSS/issues/1683)
+* Extensions
+	* Breaking change: uppercase `./Controllers/` directory [#1729](https://github.com/FreshRSS/FreshRSS/pull/1729)
+	* Show existing extensions in admin panel [#1708](https://github.com/FreshRSS/FreshRSS/pull/1708)
+	* New function `$entry->_hash($hex)` for extensions that change the content of entries [#1707](https://github.com/FreshRSS/FreshRSS/pull/1707)
+* I18n
+	* Hebrew [#1716](https://github.com/FreshRSS/FreshRSS/pull/1716)
+	* Improved German [#1698](https://github.com/FreshRSS/FreshRSS/pull/1698)
+* Misc.
+	* Customisable `constants.local.php` [#1725](https://github.com/FreshRSS/FreshRSS/pull/1725)
+	* Basic mechanism to limit the size of the logs [#1712](https://github.com/FreshRSS/FreshRSS/pull/1712)
+	* Translation validation tool [#1653](https://github.com/FreshRSS/FreshRSS/pull/1653)
+	* Translation manipulation tool [#1658](https://github.com/FreshRSS/FreshRSS/pull/1658)
+	* Improved documentation [#1697](https://github.com/FreshRSS/FreshRSS/pull/1697), [#1704](https://github.com/FreshRSS/FreshRSS/pull/1704)
+	* New `.editorconfig` file [#1732](https://github.com/FreshRSS/FreshRSS/pull/1732)
+
 
 ## 2017-10-01 FreshRSS 1.8.0
 
-* Compatibility:
+* Compatibility
 	* Minimal PHP version increased to PHP 5.3.8+ to fix sanitize bug [#1604](https://github.com/FreshRSS/FreshRSS/issues/1604)
 	* Add support for PHP 7.1 in the API [#1584](https://github.com/FreshRSS/FreshRSS/issues/1584), [#1594](https://github.com/FreshRSS/FreshRSS/pull/1594)
 * UI
@@ -13,7 +156,7 @@
 	* Fix share menu on small screens [#1645](https://github.com/FreshRSS/FreshRSS/pull/1645)
 	* Go back to previous view when collapsing article [#1177](https://github.com/FreshRSS/FreshRSS/issues/1177)
 * CLI
-	* New command `./cli/update-user` to update user settings [#1600](https://github.com/FreshRSS/FreshRSS/issues/1600)
+	* New command `./cli/update-user.php` to update user settings [#1600](https://github.com/FreshRSS/FreshRSS/issues/1600)
 * I18n
 	* Korean [#1578](https://github.com/FreshRSS/FreshRSS/pull/1578)
 	* Portuguese (Brazilian) [#1648](https://github.com/FreshRSS/FreshRSS/pull/1648)
@@ -30,7 +173,7 @@
 
 ## 2017-06-03 FreshRSS 1.7.0
 
-* Features:
+* Features
 	* Deferred insertion of new articles, for better chronological order [#530](https://github.com/FreshRSS/FreshRSS/issues/530)
 	* Better search:
 		* Possibility to use multiple `intitle:`, `inurl:`, `author:` [#1478](https://github.com/FreshRSS/FreshRSS/pull/1478)
@@ -38,7 +181,7 @@
 			* Examples: `!intitle:unwanted`, `-intitle:unwanted`, `-inurl:unwanted`, `-author:unwanted`, `-#unwanted`, `-unwanted`
 		* Allow double-quotes, such as `author:"some name"`, in addition to single-quotes such as `author:'some name'` [#1478](https://github.com/FreshRSS/FreshRSS/pull/1478)
 	* Multi-user tokens (to access RSS outputs of any user) [#1390](https://github.com/FreshRSS/FreshRSS/issues/1390)
-* Compatibility:
+* Compatibility
 	* Add support for PHP 7.1 [#1471](https://github.com/FreshRSS/FreshRSS/issues/1471)
 	* PostgreSQL is not experimental anymore [#1476](https://github.com/FreshRSS/FreshRSS/pull/1476)
 * Bug fixing
@@ -669,12 +812,12 @@
 * Amélioration de la vue globale
 * Possibilité de personnaliser les icônes de lecture
 * Suppression de champs lors de l’installation (base_url et sel)
-* Correction bugs divers
+* Correction de bugs divers
 
 
 ## 2013-10-15 FreshRSS 0.5.1
 
-* Correction bug des catégories disparues
+* Correction du bug des catégories disparues
 * Correction traduction i18n/fr et i18n/en
 * Suppression de certains appels à la feuille de style fallback.css
 
@@ -756,9 +899,9 @@
 * Les flux peuvent être sortis du flux principal (système de priorité)
 * Amélioration ajout / import / export des flux
 * Amélioration actualisation (meilleure gestion des erreurs)
-* Améliorations CSS
+* Améliorations du CSS
 * Changements dans la base de données
-* Màj de la librairie SimplePie
+* MàJ de la librairie SimplePie
 * Flux sans auteurs gérés normalement
 * Correction bugs divers
 

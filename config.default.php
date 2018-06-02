@@ -1,7 +1,7 @@
 <?php
 
 # Do not modify this file, which defines default values,
-# but edit `config.php` instead, after the install process is completed.
+# but edit `./data/config.php` instead, after the install process is completed.
 return array(
 
 	# Set to `development` to get additional error messages,
@@ -49,7 +49,7 @@ return array(
 	'auth_type' => 'form',
 
 	# Allow or not the use of the API, used for mobile apps.
-	#	End-point is http://example.net/FreshRSS/p/api/greader.php
+	#	End-point is https://freshrss.example.net/api/greader.php
 	#	You need to set the user's API password.
 	'api_enabled' => false,
 

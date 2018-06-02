@@ -37,10 +37,12 @@ return array(
 			'no_limit' => 'Bez limitu',
 			'thin' => 'Tenká',
 		),
+		'show_nav_buttons' => 'Show the navigation buttons',	//TODO
 	),
 	'query' => array(
 		'_' => 'Uživatelské dotazy',
 		'deprecated' => 'Tento dotaz již není platný. Odkazovaná kategorie nebo kanál byly smazány.',
+		'display' => 'Display user query results', // TODO
 		'filter' => 'Filtr aplikován:',
 		'get_all' => 'Zobrazit všechny články',
 		'get_category' => 'Zobrazit "%s" kategorii',
@@ -51,6 +53,7 @@ return array(
 		'number' => 'Dotaz n°%d',
 		'order_asc' => 'Zobrazit nejdříve nejstarší články',
 		'order_desc' => 'Zobrazit nejdříve nejnovější články',
+		'remove' => 'Remove user query', // TODO
 		'search' => 'Hledat "%s"',
 		'state_0' => 'Zobrazit všechny články',
 		'state_1' => 'Zobrazit přečtené články',
@@ -125,6 +128,7 @@ return array(
 	),
 	'sharing' => array(
 		'_' => 'Sdílení',
+		'add' => 'Add a sharing method', // TODO
 		'blogotext' => 'Blogotext',
 		'diaspora' => 'Diaspora*',
 		'email' => 'Email',
@@ -132,6 +136,7 @@ return array(
 		'g+' => 'Google+',
 		'more_information' => 'Více informací',
 		'print' => 'Tisk',
+		'remove' => 'Remove sharing method', // TODO
 		'shaarli' => 'Shaarli',
 		'share_name' => 'Jméno pro zobrazení',
 		'share_url' => 'Jakou URL použít pro sdílení',
@@ -148,6 +153,7 @@ return array(
 		'collapse_article' => 'Srolovat',
 		'first_article' => 'Skočit na první článek',
 		'focus_search' => 'Hledání',
+		'global_view' => 'Switch to global view', // TODO
 		'help' => 'Zobrazit documentaci',
 		'javascript' => 'Pro použití zkratek musí být povolen JavaScript',
 		'last_article' => 'Skočit na poslední článek',
@@ -157,13 +163,17 @@ return array(
 		'navigation' => 'Navigace',
 		'navigation_help' => 'Pomocí přepínače "Shift" fungují navigační zkratky v rámci kanálů.<br/>Pomocí přepínače "Alt" fungují v rámci kategorií.',
 		'next_article' => 'Skočit na další článek',
+		'normal_view' => 'Switch to normal view', // TODO
 		'other_action' => 'Ostatní akce',
 		'previous_article' => 'Skočit na předchozí článek',
+		'reading_view' => 'Switch to reading view', // TODO
+		'rss_view' => 'Open RSS view in a new tab', // TODO
 		'see_on_website' => 'Navštívit původní webovou stránku',
 		'shift_for_all_read' => '+ <code>shift</code> označí vše jako přečtené',
 		'title' => 'Zkratky',
 		'user_filter' => 'Aplikovat uživatelské filtry',
 		'user_filter_help' => 'Je-li nastaven pouze jeden filtr, bude použit. Další filtry jsou dostupné pomocí jejich čísla.',
+		'views' => 'Views', // TODO
 	),
 	'user' => array(
 		'articles_and_size' => '%s článků (%s)',

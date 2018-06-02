@@ -1,13 +1,14 @@
 #!/usr/bin/php
 <?php
 $isUpdate = true;
-require('_update-or-create-user.php');
+require(__DIR__ . '/_update-or-create-user.php');
 
 $username = cliInitUser($options['user']);
 
 echo 'FreshRSS updating user “', $username, "”…\n";
 
-$ok = FreshRSS_user_Controller::updateContextUser(
+$ok = FreshRSS_user_Controller::updateUser(
+	$username,
 	empty($options['password']) ? '' : $options['password'],
 	empty($options['api_password']) ? '' : $options['api_password'],
 	$values);

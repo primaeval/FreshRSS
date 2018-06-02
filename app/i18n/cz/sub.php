@@ -1,6 +1,10 @@
 <?php
 
 return array(
+	'api' => array(
+		'documentation' => 'Copy the following URL to use it within an external tool.',// TODO
+		'title' => 'API',// TODO
+	),
 	'bookmarklet' => array(
 		'documentation' => 'Drag this button to your bookmarks toolbar or right-click it and choose "Bookmark This Link". Then click "Subscribe" button in any page you want to subscribe to.',// TODO
 		'label' => 'Subscribe',// TODO
@@ -28,14 +32,22 @@ return array(
 		'description' => 'Popis',
 		'empty' => 'Kanál je prázdný. Ověřte prosím zda je ještě autorem udržován.',
 		'error' => 'Vyskytl se problém s kanálem. Ověřte že je vždy dostupný, prosím, a poté jej aktualizujte.',
-		'in_main_stream' => 'Zobrazit ve “Všechny kanály”',
 		'informations' => 'Informace',
 		'keep_history' => 'Zachovat tento minimální počet článků',
 		'moved_category_deleted' => 'Po smazání kategorie budou v ní obsažené kanály automaticky přesunuty do <em>%s</em>.',
+		'mute' => 'mute', // TODO
 		'no_selected' => 'Nejsou označeny žádné kanály.',
 		'number_entries' => '%d článků',
+		'priority' => array(
+			'_' => 'Visibility', // TODO
+			'archived' => 'Do not show (archived)', // TODO
+			'main_stream' => 'Zobrazit ve “Všechny kanály”',
+			'normal' => 'Show in its category', // TODO
+		),
+		'ssl_verify' => 'Verify SSL security',	//TODO
 		'stats' => 'Statistika',
 		'think_to_add' => 'Můžete přidat kanály.',
+		'timeout' => 'Timeout in seconds',	//TODO
 		'title' => 'Název',
 		'title_add' => 'Přidat RSS kanál',
 		'ttl' => 'Neobnovovat častěji než',

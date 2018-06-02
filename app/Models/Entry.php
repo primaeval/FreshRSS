@@ -97,6 +97,14 @@ class FreshRSS_Entry extends Minz_Model {
 		return $this->hash;
 	}
 
+	public function _hash($value) {
+		$value = trim($value);
+		if (ctype_xdigit($value)) {
+			$this->hash = substr($value, 0, 32);
+		}
+		return $this->hash;
+	}
+
 	public function _id($value) {
 		$this->id = $value;
 	}
@@ -185,7 +193,8 @@ class FreshRSS_Entry extends Minz_Model {
 				try {
 					// l'article n'est pas en BDD, on va le chercher sur le site
 					$this->content = get_content_by_parsing(
-						htmlspecialchars_decode($this->link(), ENT_QUOTES), $pathEntries
+						htmlspecialchars_decode($this->link(), ENT_QUOTES), $pathEntries,
+						$this->feed->attributes()
 					);
 				} catch (Exception $e) {
 					// rien à faire, on garde l'ancien contenu(requête a échoué)

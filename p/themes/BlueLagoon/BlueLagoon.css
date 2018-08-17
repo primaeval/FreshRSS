@@ -609,7 +609,7 @@ a.btn {
 	width: 235px;
 }
 .aside.aside_feed {
-	padding: 10px 0;
+	/*padding: 10px 0;*/
 	text-align: center;
 }
 .aside.aside_feed .tree {

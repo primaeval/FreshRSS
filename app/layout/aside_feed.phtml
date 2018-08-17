@@ -10,18 +10,18 @@
 <div class="aside aside_feed<?php echo $class; ?>" id="aside_feed">
 	<a class="toggle_aside" href="#close"><?php echo _i('close'); ?></a>
 
+
+	<form id="mark-read-aside" method="post">
+	<input type="hidden" name="_csrf" value="<?php echo FreshRSS_Auth::csrfToken(); ?>" />
+	<ul class="tree">
 	<?php if (FreshRSS_Auth::hasAccess()) { ?>
-	<div class="stick configure-feeds no-mobile">
+	<div class="configure-feeds no-mobile">
 		<a class="btn btn-important" href="<?php echo _url('subscription', 'index'); ?>"><?php echo _t('index.menu.subscription'); ?></a>
 		<a class="btn btn-important" href="<?php echo _url('importExport', 'index'); ?>"><?php echo _i('import'); ?></a>
 	</div>
 	<?php } elseif (FreshRSS_Auth::accessNeedsLogin()) { ?>
 	<a href="<?php echo _url('index', 'about'); ?>"><?php echo _t('index.menu.about'); ?></a>
 	<?php } ?>
-
-	<form id="mark-read-aside" method="post">
-	<input type="hidden" name="_csrf" value="<?php echo FreshRSS_Auth::csrfToken(); ?>" />
-	<ul class="tree">
 		<li class="tree-folder category all<?php echo FreshRSS_Context::isCurrentGet('a') ? ' active' : ''; ?>">
 			<div class="tree-folder-title">
 				<?php echo _i('all'); ?> <a class="title" data-unread="<?php echo format_number(FreshRSS_Context::$total_unread); ?>" href="<?php echo _url('index', 'index'); ?>"><?php echo _t('index.menu.main_stream'); ?></a>
@@ -70,6 +70,7 @@
 		?>
 	</ul>
 	</form>
+
 </div>
 
 <script id="feed_config_template" type="text/html">
